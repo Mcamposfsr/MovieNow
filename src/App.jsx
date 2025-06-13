@@ -1,10 +1,13 @@
+import MenuLateral from "./components/MenuLateral"
+import PaginaPrincipal from "./components/PaginaPrincipal"
+
 function App() {
   return (
-    <>
-      <div className='w-full h-screen flex justify-center items-center'>
-        <h3 className=' text-[80px]'>INICIANDO PROJETO</h3>
-      </div>
-    </>
+    <div className="flex">
+      <MenuLateral/>
+      <PaginaPrincipal/>
+
+    </div>
   )
 }
 
