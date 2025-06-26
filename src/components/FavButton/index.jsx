@@ -22,9 +22,13 @@ const medidas = {
     }
 }
 
+const definirFavorito = ()=> {
+    fav?setFav(false):setFav(true)
+}
+
 
     return ( 
-        <button aria-label="Remover e adicionar favoritos" style={{width:medidas[size].width,height:medidas[size].height,borderRadius:medidas[size].rounded}} onClick={()=>{fav?setFav(false):setFav(true); console.log(fav)}} className={`${className} backdrop-blur-[20px] cursor-pointer bg-[image:var(--color-whiteGlass)] flex items-center justify-center`}>
+        <button aria-label="Remover e adicionar favoritos" style={{width:medidas[size].width,height:medidas[size].height,borderRadius:medidas[size].rounded}} onClick={()=>{definirFavorito()}} className={`${className} backdrop-blur-[20px] cursor-pointer bg-[image:var(--color-whiteGlass)] flex items-center justify-center`}>
             <FavIcon className={`stroke-roxo ${fav?'fill-lightPurple':'fill-none'}`}
             style={{width:medidas[size].fav, height:medidas[size].fav}}/>
         </button>
