@@ -1,17 +1,15 @@
 import ButtonsCarrossel from "../ButtonsCarrossel"
 import { useState, useEffect, useRef} from "react"
+import Card from "@/components/Card"
 
 
-/* eslint-disable no-unused-vars */
+const Carrossel = ({ sizeCard, cardsInfo=[] }) => {
 
-const Carrossel = ({ CardComponent }) => {
-
-
-    let quantidade = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     // CONTROLE DE FOCO DOS CARDS
     let refCards = useRef([])
     let firstRender = useRef(true)
+
 
     const [foco, setFoco] = useState(0)
 
@@ -19,27 +17,21 @@ const Carrossel = ({ CardComponent }) => {
         // true -> next
         // false -> previous
         if (action) {
-            if (foco + 1 > quantidade.length - 1) {
+            if (foco + 1 > cardsInfo.length - 1) {
                 setFoco(0)
             } else {
                 setFoco(foco + 1)
             }
         } else {
             if (foco - 1 < 0) {
-                setFoco(quantidade.length - 1)
+                setFoco(cardsInfo.length - 1)
             } else {
                 setFoco(foco - 1)
             }
-
         }
-        rolagemDeCards()
-
 
     }
-
-    const rolagemDeCards = () => {
-
-    }
+    // Controle de rolagem dos cards.
 
     useEffect(() => {
 
@@ -54,8 +46,6 @@ const Carrossel = ({ CardComponent }) => {
 
     }, [foco])
 
-
-
     return (
         <div className="h-[350px] relative w-full">
             <ButtonsCarrossel position={"L"} active={alterarFoco} />
@@ -63,13 +53,13 @@ const Carrossel = ({ CardComponent }) => {
             <div className="scroll overflow-x-scroll  overflow-y-hidden flex gap-[20px] items-center h-full  w-full box-border px-[10px] box-border">
 
                 {
-                    quantidade.map((elemento, indice) => {
+                    cardsInfo.slice(0,10).map((elemento, indice) => {
 
                         if (indice == 0) {
-                            return (<CardComponent classNameCard="scale-105" ref={e => refCards.current[indice] = e} key={`card-${indice}`} />)
+                            return (<Card info={elemento} size={sizeCard} classNameCard="scale-105" ref={e => refCards.current[indice] = e} key={`card-${indice}`} />)
 
                         } else {
-                            return (<CardComponent ref={e => refCards.current[indice] = e} key={`card-${indice}`} />)
+                            return (<Card info={elemento} size={sizeCard} ref={e => refCards.current[indice] = e} key={`card-${indice}`} />)
 
                         }
 

@@ -1,7 +1,7 @@
 import SearchIcon from "@/assets/search.svg?react"
 import { useRef, useState } from "react"
 
-const SearchBar = ({ className }) => {
+const SearchBar = ({ className="" }) => {
 
     const inputBusca = useRef(null)
     const [showInput, setShowInput] = useState(false)
@@ -33,7 +33,7 @@ const SearchBar = ({ className }) => {
 
 
     return (
-        <div className={`${className} w-[calc(100dvw-317px)] h-[80px] flex justify-center fixed top-0 left-[300px] z-20 p-[8px]`}>
+        <div className={`${className} w-[calc(100dvw-317px)] h-[80px] flex justify-center absolute top-0 left-[300px] z-20 p-[8px]`}>
             <input onBlur={(e)=>{handleBlur(e)}} value={inputText} onChange={(e) => { handleInput(e) }} type="text" ref={inputBusca} placeholder="Pesquise Aqui" className={`${showInput ? "opacity-100" : "opacity-0"} transition duration-200  focus:outline-none inset-shadow-input shadow-input rounded-[20px] p-[15px] bg-dark text-gray mx-auto w-[800px]`} />
             <button id="search-button" onClick={() => toggleInput()} className="cursor-pointer absolute top-[50%] right-10 translate-y-[-50%] "><SearchIcon className={"w-[25px] h-[25px]"} /></button>
 
