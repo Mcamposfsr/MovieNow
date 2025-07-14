@@ -8,11 +8,11 @@ class ReqController{
         try{
             const series = await api.buscarSeries(page)
             if(!series){
-                throw new Error(`Falha na requisição ERRO:${series}`)
+                throw new Error(`Falha na busca de series -> ${series}`)
             }
-            return series.Search
+            return series.results
         }catch(err){
-            console.log(`Ocorreu um erro: ${err}`)
+            console.log(`Falha na busca de series -> ${err}`)
             return null
         }
         
@@ -21,11 +21,11 @@ class ReqController{
         try{
             const filmes = await api.BuscarFilmes(page)
             if(!filmes){
-                throw new Error(`Falha na requisição ERRO:${filmes}`)
+                throw new Error(`Falha na busca de series -> ${filmes}`)
             }
-            return filmes.Search
+            return filmes.results
         }catch(err){
-            console.log(`Ocorreu um erro: ${err}`)
+            console.log(`Falha na busca de filmes -> ${err}`)
             return null
         }
         

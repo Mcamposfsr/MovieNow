@@ -1,5 +1,5 @@
 import MenuLateral from "./components/MenuLateral"
-import PaginaPrincipal from "@/components/Pages/PaginaPrincipal"
+import PageHome from "@/components/Pages/PageHome"
 import ShowPage from "@/components/Pages/ShowPage"
 import InfoPage from "@/components/Pages/InfoPage"
 import SearchBar from "@/components/SearchBar"
@@ -22,7 +22,7 @@ function App() {
       <MenuLateral />
       <Routes>
 
-        <Route path="/" element={<PaginaPrincipal />}></Route>
+        <Route path="/" element={<PageHome />}></Route>
         <Route path="/favoritos" element={<ShowPage busca={"favoritos"}/>}></Route>
         <Route path="/filmes" element={<ShowPage busca={"filmes"}/>}></Route>
         <Route path="/series" element={<ShowPage busca={"series"}/>}></Route>
@@ -37,3 +37,4 @@ function App() {
 }
 
 export default App
+

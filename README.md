@@ -1,4 +1,4 @@
-# Biblioteca de Filmes e Séries
+# Biblioteca de Filmes e Séries - [🚧 Em desenvolvimento]
 
 Uma aplicação online que permite buscar e visualizar informações sobre filmes e séries utilizando as APIs da OMDb e TMDb. É possível explorar títulos, acessar detalhes como sinopse, elenco, gênero, e ainda favoritar obras para montar sua própria lista personalizada.
 

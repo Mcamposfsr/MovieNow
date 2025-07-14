@@ -17,14 +17,14 @@ const Carrossel = ({ sizeCard, cardsInfo=[] }) => {
         // true -> next
         // false -> previous
         if (action) {
-            if (foco + 1 > cardsInfo.length - 1) {
+            if (foco + 1 > 10 - 1) {
                 setFoco(0)
             } else {
                 setFoco(foco + 1)
             }
         } else {
             if (foco - 1 < 0) {
-                setFoco(cardsInfo.length - 1)
+                setFoco(9)
             } else {
                 setFoco(foco - 1)
             }
@@ -32,6 +32,10 @@ const Carrossel = ({ sizeCard, cardsInfo=[] }) => {
 
     }
     // Controle de rolagem dos cards.
+
+    useEffect(()=>{
+        console.log(foco)
+    },[foco])
 
     useEffect(() => {
 
@@ -53,7 +57,7 @@ const Carrossel = ({ sizeCard, cardsInfo=[] }) => {
             <div className="scroll overflow-x-scroll  overflow-y-hidden flex gap-[20px] items-center h-full  w-full box-border px-[10px] box-border">
 
                 {
-                    cardsInfo.slice(0,10).map((elemento, indice) => {
+                    cardsInfo.slice(1,11).map((elemento, indice) => {
 
                         if (indice == 0) {
                             return (<Card info={elemento} size={sizeCard} classNameCard="scale-105" ref={e => refCards.current[indice] = e} key={`card-${indice}`} />)

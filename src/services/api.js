@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const url = "http://www.omdbapi.com"
-const key = "288112ce"
+const url = "https://api.themoviedb.org/3"
+const key = "b1a642318c865fe05b3620ed488bcd86"
 
 const api = {
     buscaManual: async () => {
@@ -10,27 +10,25 @@ const api = {
     // Realizar busca genérica por séries.
     buscarSeries: async (page = 1) => {
 
-        const response = await axios.get(url, {
+        const response = await axios.get(`${url}/tv/popular`, {
             params: {
-                s: "the a",
-                apikey: key,
-                type: "series",
+                api_key: key,
                 page: page,
             }
         })
+        console.log(response.data)
         return response.data
 
     },
     BuscarFilmes: async (page = 1) => {
 
-        const response = await axios.get(url, {
+        const response = await axios.get(`${url}/movie/popular`, {
             params: {
-                s: "the a",
-                apikey: key,
-                type: "movie",
+                api_key: key,
                 page: page,
             }
         })
+        console.log(response.data)
         return response.data
 
 
@@ -38,10 +36,11 @@ const api = {
     BuscaFavoritos: async () => {
 
     },
+    // PARA A PÁGINA DE SHOW DOS FILMES.
     BuscarPorId: async (id) =>{
-        const response = await axios.get(url,{
+        const response = await axios.get(`${url}/`,{
             params:{
-                apikey:key,
+                api_key:key,
                 i:id,
                 plot:"full"
             }

@@ -10,6 +10,12 @@ const useBuscaFilmes = (page = 1) => {
 
             const controller = new reqController
             const filmes = await controller.handleFilmes(page)
+            // PRECISA MELHORAR
+            if(!filmes){
+                setCardFilmes(null)
+                return
+            }
+
             setCardFilmes((prev)=>[...prev,...filmes])
 
         }
