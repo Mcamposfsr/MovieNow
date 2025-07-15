@@ -9,20 +9,21 @@ import NormalizeTmdbData from "@/utils/normalizeTmdbData";
 const Card = forwardRef((props, ref) => {
 
     const nav = useNavigate()
-    const { classNameCard, info, size } = props
+    const { classNameCard, dados, size } = props
 
-    // CLASSE QUE LIDA COM MANIPULAÇÃO E PADRONIZAÇÃO DOS DADOS.
-    const dados = NormalizeTmdbData(info)
+    // RECEBER DADOS JÁ PADRONIZADOS E MANIPULADOS.
+    const dadosCard = dados.getData()
+    
 
     // DEFINIR TAMANHO DO CARD
     const tamanhoCard = {
         P: {
-            h: "320px",
-            w: "230px"
+            h: "310px",
+            w: "220px"
         },
         G: {
-            h: "280px",
-            w: "350px"
+            h: "380px",
+            w: "260px"
         }
 
     }
@@ -36,16 +37,16 @@ const Card = forwardRef((props, ref) => {
     }
 
     const abrirInfoPage = ()=>{
-        nav(`Info/${dados.getId()}/${slugify(name)}`)
+        nav(`/info/${dadosCard.type}/${dadosCard.id}/${slugify(dadosCard.name)}`)
     }
 
 
     return (
-        <div onClick={() => abrirInfoPage()} onMouseEnter={() => { toggleOpacity(cardInfo) }} onMouseLeave={() => { toggleOpacity(cardInfo) }} ref={ref} style={{ backgroundImage: `url(${dados.getImg("M")})`, width:tamanhoCard[size].w, height:tamanhoCard[size].h }} className={`${classNameCard} bg-start bg-cover bg-no-repeat shrink-0 cursor-pointer hover:scale-105 rounded-[20px] relative flex items-end overflow-hidden transition duration-200 card`}>
+        <div onClick={() => abrirInfoPage()} onMouseEnter={() => { toggleOpacity(cardInfo) }} onMouseLeave={() => { toggleOpacity(cardInfo) }} ref={ref} style={{ backgroundImage: `url(${dadosCard.img})`, width:tamanhoCard[size].w, height:tamanhoCard[size].h }} className={`${classNameCard} bg-start bg-cover bg-no-repeat shrink-0 cursor-pointer hover:scale-105 rounded-[20px] relative flex items-end overflow-hidden transition duration-200 card`}>
             <FavButton className="absolute top-5 right-5" size="P" />
             <div ref={cardInfo} className="w-full px-[20px] bg-[image:var(--color-whiteGlass)] h-[86px] flex flex-col justify-center gap-[10px] transition duration-200">
-                <h3 className="font-semibold text-[18px] leading-6 h-[48px] line-clamp-2">{dados.getName()}</h3>
-                <p className="h-[24px] text-[14px]">{`Lançamento | ${dados.getDate()}`}</p>
+                <h3 className="font-semibold flex items-start text-[18px] leading-6 h-[48px] line-clamp-2">{dadosCard.name}</h3>
+                <p className="h-[24px] text-[14px]">{`Lançamento | ${dadosCard.date}`}</p>
             </div>
 
         </div>

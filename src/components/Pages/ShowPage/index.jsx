@@ -7,25 +7,29 @@ const ShowPage = ({ busca }) => {
 
     const { cardFilmes, cardSeries } = CardsContext()
 
-    let cardsInfo = []
-    
+    let dados = null
+
     // VERIFICAR O CONTEÚDO QUE SERÁ EXIBIDO
 
     if (busca == "filmes") {
-        cardsInfo = cardFilmes
+        dados = cardFilmes
     } else if (busca == "series") {
-        cardsInfo = cardSeries
+        dados = cardSeries
     } else if (busca == "favoritos") {
-        cardsInfo = cardSeries
+        dados = cardSeries
+    }
+
+    if(!dados){
+        return null
     }
 
     return (
         <main className="flex-1 flex bg-dark h-screen  overflow-x-hidden px-[20px] flex-col gap-[40px] pt-[70px]">
             <h2 className="text-white text-[20px] font-semibold ">{title}</h2>
-            <div className="py-[20px] px-[20px] grid grid-cols-[1fr_1fr_1fr_1fr] flex-wrap gap-y-[20px] overflow-y-scroll">
+            <div className="py-[20px] px-[20px] grid grid-cols-[1fr_1fr_1fr_1fr_1fr] flex-wrap gap-y-[20px] overflow-y-scroll">
                 {
-                    cardsInfo.map((elemento, i) => {
-                        return (<Card size={"G"} key={`key-show-${i}`} info={elemento} />)
+                    dados.map((elemento, i) => {
+                        return (<Card size={"G"} key={`key-show-${i}`} dados={elemento} />)
                     })
                 }
 

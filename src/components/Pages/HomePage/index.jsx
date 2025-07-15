@@ -2,7 +2,7 @@ import SectionTop from "@/components/Sections/SectionTop"
 import SectionCards from "@/components/Sections/SectionCards"
 
 
-const PageHome = ({className}) =>{
+const HomePage = ({className}) =>{
     return (
         <main className={`${className} bg-dark h-screen flex-1 overflow-x-hidden`}>
             <SectionTop/>
@@ -12,4 +12,4 @@ const PageHome = ({className}) =>{
     )
 }
 
-export default PageHome
+export default HomePage

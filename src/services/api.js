@@ -14,9 +14,9 @@ const api = {
             params: {
                 api_key: key,
                 page: page,
+                language:"pt-BR"
             }
         })
-        console.log(response.data)
         return response.data
 
     },
@@ -26,9 +26,10 @@ const api = {
             params: {
                 api_key: key,
                 page: page,
+                language:"pt-BR"
+
             }
         })
-        console.log(response.data)
         return response.data
 
 
@@ -37,12 +38,13 @@ const api = {
 
     },
     // PARA A PÁGINA DE SHOW DOS FILMES.
-    BuscarPorId: async (id) =>{
-        const response = await axios.get(`${url}/`,{
+    BuscarPorId: async (id,type) =>{
+        const response = await axios.get(`${url}/${type}/${id}`,{
             params:{
                 api_key:key,
-                i:id,
-                plot:"full"
+                language:"pt-BR",
+                plot:"full",
+                append_to_response:"credits,videos,images"
             }
         })
         return response.data

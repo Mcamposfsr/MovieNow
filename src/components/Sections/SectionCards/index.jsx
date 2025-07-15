@@ -14,7 +14,7 @@ const SectionCards = ( {type} ) =>{
             filmes:{
                 title:"Filmes",
                 info:cardFilmes,
-                size:"G"
+                size:"P"
             },
             
         }    

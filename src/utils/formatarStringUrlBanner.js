@@ -12,7 +12,6 @@ const formatarStringUrlBanner = (path,size) => {
 
 
     if(!path){
-        
         throw new Error(`Ouve um erro na formatação da url. Valor da url é ${path}`)
         
     }

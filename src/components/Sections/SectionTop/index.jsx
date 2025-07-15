@@ -1,12 +1,13 @@
 import PurpleButton from "../../PurpleButton"
 import FavButton from "../../FavButton"
 import useApiinfo from "@/hooks/useApiinfo.js"
-import formatarStringUrlBanner from "@/utils/formatarStringUrlBanner"
-import formatarDataTMDB from "../../../utils/formatarDataTMDB"
 
-const SecaoDestaque = () => {
+
+const SectionTop = () => {
 
     const { cardFilmes } = useApiinfo()
+
+    //  ATRIBUÍ A INSTANCIA DIRETAMENTE POIS AQUI O TAMANHO DA IMAGEM PRECISA SER PERSONALIZADO "getImg('O')
 
     const filme = cardFilmes[0] || null
 
@@ -14,10 +15,10 @@ const SecaoDestaque = () => {
         return null
     }
     return (
-        <section style={{ backgroundImage: `url(${formatarStringUrlBanner(filme.backdrop_path,"O")})` }} className={`h-[400px] px-[8px] bg-no-repeat bg-top bg-center bg-cover flex items-end`}>
+        <section style={{ backgroundImage: `url(${filme.getBanner("G")})` }} className={`h-[400px] px-[8px] bg-no-repeat bg-top bg-cover flex items-end`}>
             <div className="flex flex-col gap-[20px] py-[60px]">
-                <h2 className="text-white text-[48px] font-semibold box-border leading-none">{filme.original_title}</h2>
-                <p className="text-white text-[14px] font-light">{`Lançamento | ${formatarDataTMDB(filme.release_date)}`}</p>
+                <h2 className="text-white text-[48px] font-semibold box-border leading-none">{filme.name}</h2>
+                <p className="text-white text-[14px] font-light">{`Lançamento | ${filme.getDate()}`}</p>
                 <div className="flex items-center gap-[18px]">
                     <PurpleButton texto={"Explorar"} />
                     <FavButton />
@@ -28,4 +29,4 @@ const SecaoDestaque = () => {
     )
 }
 
-export default SecaoDestaque
+export default SectionTop

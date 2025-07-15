@@ -7,23 +7,27 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import ReqController from "@/utils/reqController"
 import formatarTempo from "@/utils/formatarTempo.js"
+import NormalizeTmdbData from "@/utils/normalizeTmdbData"
 
 
 const InfoPage = () => {
 
-    const { id } = useParams()
+    const { type,id } = useParams()
 
     const [dados,setDados] = useState(null)
 
     useEffect(()=>{
         const buscarDados = async ()=>{
-            let valor = await ReqController.handleId(id)
-            console.log(valor)
-            setDados(valor)
+            const info = await ReqController.handleId(id,type)
+            const dados = NormalizeTmdbData(info)
+            setDados(dados)
+            
         }
         buscarDados()
-       
-    },[id])
+    },[id,type])
+    useEffect(()=>{
+        console.log(dados)
+    },[dados])
 
     if(!dados){
         return null
@@ -39,11 +43,11 @@ const InfoPage = () => {
                     <h3 className="text-[32px] font-semibold text-white row-start-1 col-start-1 col-span-2 self-center">{dados.Title}</h3>
                     <div className="flex gap-[5px] items-center justify-self-end justify-center row-start-1 col-start-3"><Star /> <p className="text-[18px] font-medium text-white">{`${dados.imdbRating}/10`}</p></div>
                     <ul className="flex justify-around items-center w-[50%] col-start-1 col-span-3 row-start-2">
-                        <li className="text-[18px] text-white font-medium">{dados.Year}</li>
-                        <li className="text-[18px] text-white font-medium">{dados.Genre}</li>
+                        <li className="text-[18px] text-white font-medium">{dados.getDate()}</li>
+                        <li className="text-[18px] text-white font-medium">{dados.getGeneros()}</li>
                         <li className="text-[18px] text-white font-medium">{formatarTempo(dados.Runtime)}</li>
                     </ul>
-                    <p className="text-[16px] row-start-3 col-start-1 col-span-3 text-white">{dados.Plot}</p>
+                    <p className="text-[16px] row-start-3 col-start-1 col-span-3 text-white">{dados.getPlot()}</p>
                     <div className="flex items-center gap-[18px] col-start-1 col-span-2 row-start-4">
                         
                         <FavButton />
