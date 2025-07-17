@@ -1,50 +1,48 @@
 import ButtonsCarrossel from "../ButtonsCarrossel"
-import { useState, useEffect, useRef} from "react"
-import Card from "@/components/Card"
+import { useState, useEffect, useRef } from "react"
+import CardInfo from "@/components/Cards/CardInfo"
+import CardImg from "@/components/Cards/CardImg"
 
 
-const Carrossel = ({ sizeCard, cardsInfo=[] }) => {
+const Carrossel = ({ cardsInfo, typeCards, length }) => {
+    
 
-
-    // CONTROLE DE FOCO DOS CARDS
-    let refCards = useRef([])
-    let firstRender = useRef(true)
-
-
+    // DEFINIR TAMANHO CARROSSEL
+    const tamanho = length > cardsInfo.length-1 ? cardsInfo.length : length
+    // ESTADO DE FOCO DOS CARDS
     const [foco, setFoco] = useState(0)
-
+    // REFERÊNCIA PARA CARD ATUAL
+    const refCards = useRef([])
+    // FUNÇÃO PARA REALIZAR A ROLAGEM DE CARROSSEL
+    const fazerRolagem = (indice) =>{
+        refCards.current[indice].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" })
+    }
+    // AÇÃO DE TROCA DE FOCO
     const alterarFoco = (action) => {
         // true -> next
         // false -> previous
+
         if (action) {
-            if (foco + 1 > 10 - 1) {
+
+            if (foco + 1 > tamanho - 1) {
                 setFoco(0)
+                fazerRolagem(0)
             } else {
                 setFoco(foco + 1)
+                fazerRolagem(foco+1)
+
             }
         } else {
             if (foco - 1 < 0) {
-                setFoco(9)
+                setFoco(tamanho -1)
+                fazerRolagem(tamanho -1)
             } else {
                 setFoco(foco - 1)
+                fazerRolagem(tamanho - 1)
             }
         }
 
     }
-
-    // Controle de rolagem dos cards.
-    useEffect(() => {
-
-        if(firstRender.current){
-            firstRender.current = false
-            return
-        }
-        refCards.current.forEach(e => e.classList.remove("scale-105"))
-        refCards.current[foco].classList.add("scale-105")
-        refCards.current[foco].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" })
-
-
-    }, [foco])
 
     return (
         <div className="h-[350px] relative w-full">
@@ -53,13 +51,18 @@ const Carrossel = ({ sizeCard, cardsInfo=[] }) => {
             <div className="scroll overflow-x-scroll  overflow-y-hidden flex gap-[20px] items-center h-full  w-full box-border px-[10px] box-border">
 
                 {
-                    cardsInfo.slice(1,11).map((cardInfo, indice) => {
+                    cardsInfo.slice(0, tamanho).map((cardInfo, indice) => {
+                        // PARA O 1 CARD FICAR GRANDE DE INICIO.
 
-                        if (indice == 0) {
-                            return (<Card dados={cardInfo} size={sizeCard} classNameCard="scale-105" ref={e => refCards.current[indice] = e} key={`card-${indice}`} />)
+                        if (indice == foco) {
+                            return (typeCards == "info" ?
+                                <CardInfo dados={cardInfo} size={"P"} classNameCard="scale-105" ref={e => refCards.current[indice] = e} key={`card-${indice}`} /> :
+                                <CardImg url={cardInfo} classNameCard="scale-105" ref={e => refCards.current[indice] = e} key={`card-${indice}`} />)
 
                         } else {
-                            return (<Card dados={cardInfo} size={sizeCard} ref={e => refCards.current[indice] = e} key={`card-${indice}`} />)
+                            return ((typeCards == "info" ?
+                                <CardInfo dados={cardInfo} size={"P"} ref={e => refCards.current[indice] = e} key={`card-${indice}`} /> :
+                                <CardImg url={cardInfo} ref={e => {refCards.current[indice] = e}} key={`card-${indice}`} />))
 
                         }
 

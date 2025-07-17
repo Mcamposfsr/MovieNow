@@ -1,12 +1,12 @@
 import FavButton from "@/components/Favbutton?react"
 import { forwardRef, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { slugify } from "@/utils/slugfy";
+import  slugfy  from "@/utils/slugfy";
 import NormalizeTmdbData from "@/utils/normalizeTmdbData";
 
 
 
-const Card = forwardRef((props, ref) => {
+const CardInfo = forwardRef((props, ref) => {
 
     const nav = useNavigate()
     const { classNameCard, dados, size } = props
@@ -37,7 +37,7 @@ const Card = forwardRef((props, ref) => {
     }
 
     const abrirInfoPage = ()=>{
-        nav(`/info/${dadosCard.type}/${dadosCard.id}/${slugify(dadosCard.name)}`)
+        nav(`/info/${dadosCard.type}/${dadosCard.id}/${slugfy(dadosCard.name)}`)
     }
 
 
@@ -53,4 +53,4 @@ const Card = forwardRef((props, ref) => {
     )
 })
 
-export default Card
+export default CardInfo

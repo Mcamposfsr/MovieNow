@@ -1,6 +1,6 @@
 // O OBJETIVO DESSA FUNÇÃO É APENAS FACILITAR DE CONSEGUIR O BACKDROP DAS IMAGENS DA TMDB API.
 
-const formatarStringUrlBanner = (path,size) => {
+const formatarUrlImg = (path,size) => {
 
      const tamanho = {
         P:"w300",
@@ -18,4 +18,4 @@ const formatarStringUrlBanner = (path,size) => {
     return `https://image.tmdb.org/t/p/${tamanho[size]}${path}`
 }
 
-export default formatarStringUrlBanner
+export default formatarUrlImg

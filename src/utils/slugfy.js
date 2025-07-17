@@ -1,4 +1,4 @@
-export const slugify = (title) =>
+const slugfy = (title) =>
   title
     .toLowerCase()
     .replace(/[:/\\?!]/g, "")      // Remove caracteres especiais
@@ -6,3 +6,5 @@ export const slugify = (title) =>
     .replace(/-+/g, "-")              // Hífens duplicados
     .replace(/^[-]+|[-]+$/g, "")      // Remove hífens nas pontas
     .trim();
+
+export default slugfy

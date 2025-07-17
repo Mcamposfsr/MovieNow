@@ -14,7 +14,7 @@ const api = {
             params: {
                 api_key: key,
                 page: page,
-                language:"pt-BR"
+                language: "pt-BR"
             }
         })
         return response.data
@@ -26,7 +26,7 @@ const api = {
             params: {
                 api_key: key,
                 page: page,
-                language:"pt-BR"
+                language: "pt-BR"
 
             }
         })
@@ -38,17 +38,39 @@ const api = {
 
     },
     // PARA A PÁGINA DE SHOW DOS FILMES.
-    BuscarPorId: async (id,type) =>{
-        const response = await axios.get(`${url}/${type}/${id}`,{
-            params:{
-                api_key:key,
-                language:"pt-BR",
-                plot:"full",
-                append_to_response:"credits,videos,images"
+    BuscarPorId: async (id, type) => {
+        const response = await axios.get(`${url}/${type}/${id}`, {
+            params: {
+                api_key: key,
+                language: "pt-BR",
+                plot: "full",
+                append_to_response: "credits,videos,images"
+            }
+        })
+        // CASO A REQ EM PORTUGUÊS VENHA SEM CONTEÚDO.
+        if (!response.data.overview) {
+            const responseEN = await axios.get(`${url}/${type}/${id}`, {
+                params: {
+                    api_key: key,
+                    language: "en",
+                    plot: "full",
+                    append_to_response: "credits,videos,images"
+                }
+            })
+            response.data.overview = responseEN.data.overview
+        }
+        return response.data
+    },
+    buscarGaleria: async (id,type) =>{
+        const response = await axios.get(`${url}/${type}/${id}/images`, {
+            params: {
+                api_key: key,
             }
         })
         return response.data
-    }
+
+    },
+  
 
 }
 

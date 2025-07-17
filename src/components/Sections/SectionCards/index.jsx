@@ -1,29 +1,14 @@
 import Carrossel from "@/components/Carrossel"
-import useApiInfo from "@/hooks/useApiInfo"
 
-const SectionCards = ( {type} ) =>{
+const SectionCards = ({ titulo, cardsInfo, typeCards, length}) => {
 
-        const { cardSeries, cardFilmes } = useApiInfo()
+    // CARDS INFO PRECISA SER UM ARRAY.
 
-        const tipoSection = {
-            series:{
-                title:"Series",
-                info:cardSeries,
-                size:"P"
-            },
-            filmes:{
-                title:"Filmes",
-                info:cardFilmes,
-                size:"P"
-            },
-            
-        }    
-
-    return(
+    return (
 
         <section className="px-[8px] py-[8px] flex flex-col gap-[10px] max-w-full ">
-            <h2 className="font-semibold text-white text-[20px] ">{tipoSection[type].title}</h2>
-            <Carrossel sizeCard={tipoSection[type].size} cardsInfo={tipoSection[type].info} />
+            <h2 className="font-semibold text-white text-[20px] ">{titulo}</h2>
+            <Carrossel cardsInfo={cardsInfo} typeCards={typeCards} length={length} />
 
         </section>
     )

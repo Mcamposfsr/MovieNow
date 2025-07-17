@@ -1,4 +1,4 @@
-import Card from "@/components/Card"
+import CardInfo from "@/components/Cards/CardInfo"
 import CardsContext from "@/hooks/useApiinfo.js"
 
 const ShowPage = ({ busca }) => {
@@ -29,7 +29,7 @@ const ShowPage = ({ busca }) => {
             <div className="py-[20px] px-[20px] grid grid-cols-[1fr_1fr_1fr_1fr_1fr] flex-wrap gap-y-[20px] overflow-y-scroll">
                 {
                     dados.map((elemento, i) => {
-                        return (<Card size={"G"} key={`key-show-${i}`} dados={elemento} />)
+                        return (<CardInfo size={"G"} key={`key-show-${i}`} dados={elemento} />)
                     })
                 }
 

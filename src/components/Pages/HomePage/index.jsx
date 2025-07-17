@@ -1,13 +1,20 @@
 import SectionTop from "@/components/Sections/SectionTop"
 import SectionCards from "@/components/Sections/SectionCards"
+import useApiInfo from "@/hooks/useApiInfo"
 
 
-const HomePage = ({className}) =>{
+
+
+const HomePage = ({ className }) => {
+
+    const { cardSeries, cardFilmes } = useApiInfo()
+
+
     return (
         <main className={`${className} bg-dark h-screen flex-1 overflow-x-hidden`}>
-            <SectionTop/>
-            <SectionCards type={"series"}/>
-            <SectionCards type={"filmes"}/>
+            <SectionTop />
+            <SectionCards titulo={"Series Populares"} cardsInfo={cardSeries} typeCards={"info"} length={10}/>
+            <SectionCards titulo={"Filmes Populares"} cardsInfo={cardFilmes} typeCards={"info"} length={10}/>
         </main>
     )
 }
