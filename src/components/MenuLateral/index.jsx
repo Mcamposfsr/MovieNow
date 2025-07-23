@@ -12,7 +12,7 @@ import OpcoesMenu from "@/components/OpcoesMenu"
 const MenuLateral = ({className}) => {
 
     return (
-        <aside className={`${className} box-border shrink-0 w-[300px] h-screen bg-dark text-white pl-[20px] drop-shadow-menu py-[35px] z-30`}>
+        <aside className={`${className} box-border shrink-0 w-[230px] h-screen bg-dark text-white pl-[20px] drop-shadow-menu py-[35px] z-30`}>
             <div className="flex gap-[8px] items-center">
                 <img src={Logo} alt="Imagem da logo" />
                 <h2 className="font-bold text-[22px] font-poppins">MOVIENOW</h2>

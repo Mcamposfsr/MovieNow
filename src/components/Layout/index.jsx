@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom"
 const Layout = () => {
     return (
         <div className="flex w-full box-border relative">
-            <SearchBar />
+            {/* <SearchBar /> */}
             <MenuLateral />
             <Outlet/>
         </div>

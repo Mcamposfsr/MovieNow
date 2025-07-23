@@ -19,11 +19,13 @@ const CardInfo = forwardRef((props, ref) => {
     const tamanhoCard = {
         P: {
             h: "310px",
-            w: "220px"
+            w: "220px",
+            title:"text-[1em]"
         },
         G: {
             h: "380px",
-            w: "260px"
+            w: "260px",
+            title:"text-[1.2em]"
         }
 
     }
@@ -44,9 +46,9 @@ const CardInfo = forwardRef((props, ref) => {
     return (
         <div onClick={() => abrirInfoPage()} onMouseEnter={() => { toggleOpacity(cardInfo) }} onMouseLeave={() => { toggleOpacity(cardInfo) }} ref={ref} style={{ backgroundImage: `url(${dadosCard.img})`, width:tamanhoCard[size].w, height:tamanhoCard[size].h }} className={`${classNameCard} bg-start bg-cover bg-no-repeat shrink-0 cursor-pointer hover:scale-105 rounded-[20px] relative flex items-end overflow-hidden transition duration-200 card`}>
             <FavButton className="absolute top-5 right-5" size="P" />
-            <div ref={cardInfo} className="w-full px-[20px] bg-[image:var(--color-whiteGlass)] h-[86px] flex flex-col justify-center gap-[10px] transition duration-200">
-                <h3 className="font-semibold flex items-start text-[18px] leading-6 h-[48px] line-clamp-2">{dadosCard.name}</h3>
-                <p className="h-[24px] text-[14px]">{`Lançamento | ${dadosCard.date}`}</p>
+            <div ref={cardInfo} className="w-full px-[1em] pt-[.5em] pb-[1em]  bg-[image:var(--color-whiteGlass)] h-[100px] flex flex-col transition duration-200 justify-around">
+                <h3 className={`font-semibold  line-clamp-2 ${tamanhoCard[size].title}`}>{dadosCard.name}</h3>
+                <p className="h-[1em] text-[14px]">{`Lançamento | ${dadosCard.date}`}</p>
             </div>
 
         </div>

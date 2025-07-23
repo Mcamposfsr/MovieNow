@@ -12,8 +12,7 @@ const formatarUrlImg = (path,size) => {
 
 
     if(!path){
-        throw new Error(`Ouve um erro na formatação da url. Valor da url é ${path}`)
-        
+        return "/NoPhoto-1.jpg"
     }
     return `https://image.tmdb.org/t/p/${tamanho[size]}${path}`
 }

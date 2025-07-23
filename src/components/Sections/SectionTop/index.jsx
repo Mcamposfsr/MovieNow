@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import slugfy from "@/utils/slugfy.js"
 
 
+
 const SectionTop = () => {
 
     const { cardFilmes } = useApiinfo()
@@ -20,16 +21,13 @@ const SectionTop = () => {
     const abrirInfoPage = ()=>{
         nav(`/info/${filme.getType()}/${filme.getId()}/${slugfy(filme.getName())}`)
     }
-    if (filme) {
-        console.log(filme)
-    }
-
+    
     if (!filme) {
         return null
     }
     return (
-        <section style={{ backgroundImage: `url(${filme.getBanner("O")})` }} className={`h-[500px] px-[8px] bg-no-repeat bg-top bg-cover flex items-end`}>
-            <div className="flex flex-col gap-[20px] py-[60px]">
+        <section style={{ backgroundImage: `url(${filme.getBanner("O")})` }} className={`h-[750px] relative px-[1em] bg-no-repeat bg-top bg-cover flex flex-none items-end after:w-[100%] after:h-[100%] after:left-0 after:absolute after:bg-[image:var(--color-shadowBanner)]`}>
+            <div className="flex flex-col gap-[20px] pb-[150px] relative z-999">
                 <h2 className="text-white text-[48px] font-semibold box-border leading-none">{filme.name}</h2>
                 <p className="text-white text-[14px] font-light">{`Lançamento | ${filme.getDate()}`}</p>
                 <div className="flex items-center gap-[18px]">

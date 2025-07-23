@@ -1,5 +1,5 @@
-import ButtonsCarrossel from "../ButtonsCarrossel"
-import { useState, useEffect, useRef } from "react"
+import ButtonsCarrossel from "../../ButtonsCarrossel"
+import { useState, useRef } from "react"
 import CardInfo from "@/components/Cards/CardInfo"
 import CardImg from "@/components/Cards/CardImg"
 
@@ -8,7 +8,7 @@ const Carrossel = ({ cardsInfo, typeCards, length }) => {
     
 
     // DEFINIR TAMANHO CARROSSEL
-    const tamanho = length > cardsInfo.length-1 ? cardsInfo.length : length
+    const tamanho = length > cardsInfo.length ? cardsInfo.length : length
     // ESTADO DE FOCO DOS CARDS
     const [foco, setFoco] = useState(0)
     // REFERÊNCIA PARA CARD ATUAL
@@ -38,17 +38,17 @@ const Carrossel = ({ cardsInfo, typeCards, length }) => {
                 fazerRolagem(tamanho -1)
             } else {
                 setFoco(foco - 1)
-                fazerRolagem(tamanho - 1)
+                fazerRolagem(foco - 1)
             }
         }
 
     }
 
     return (
-        <div className="h-[350px] relative w-full">
+        <div className={`${typeCards == "info" ?"h-[330px]":"h-[280px]"} relative w-full`}>
             <ButtonsCarrossel position={"L"} active={alterarFoco} />
             <ButtonsCarrossel position={"R"} active={alterarFoco} />
-            <div className="scroll overflow-x-scroll  overflow-y-hidden flex gap-[20px] items-center h-full  w-full box-border px-[10px] box-border">
+            <div className="scroll overflow-x-scroll  overflow-y-hidden flex items-center h-full  w-full box-border box-border gap-[1.2em] px-[.5em]">
 
                 {
                     cardsInfo.slice(0, tamanho).map((cardInfo, indice) => {

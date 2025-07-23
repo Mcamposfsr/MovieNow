@@ -70,6 +70,14 @@ const api = {
         return response.data
 
     },
+    buscarCreditos: async (id,type) =>{
+        const response = await axios.get(`${url}/${type}/${id}/credits`,{
+            params:{
+                api_key: key,
+            }
+        })
+        return response.data
+    }
   
 
 }

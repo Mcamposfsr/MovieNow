@@ -24,9 +24,9 @@ const ShowPage = ({ busca }) => {
     }
 
     return (
-        <main className="flex-1 flex bg-dark h-screen  overflow-x-hidden px-[20px] flex-col gap-[40px] pt-[70px]">
-            <h2 className="text-white text-[20px] font-semibold ">{title}</h2>
-            <div className="py-[20px] px-[20px] grid grid-cols-[1fr_1fr_1fr_1fr_1fr] flex-wrap gap-y-[20px] overflow-y-scroll">
+        <main className="flex-1 flex bg-dark h-screen  overflow-x-hidden px-[1em] flex-col gap-[40px] py-[3em] box-border">
+            <h2 className="text-white text-[1.5em] font-semibold ">{title}</h2>
+            <div className=" grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr] flex-wrap gap-y-[2em] gap-x-[1em]">
                 {
                     dados.map((elemento, i) => {
                         return (<CardInfo size={"G"} key={`key-show-${i}`} dados={elemento} />)
